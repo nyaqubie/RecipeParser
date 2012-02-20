@@ -84,4 +84,24 @@ public class Recipe {
 
         return new Recipe(myName, myMeta, myIngr, myInst);
     }
+
+    public static Recipe parseGUIForm(String aName, String aMeta, String aIngr, String aInst){
+        List<String> myMeta = new ArrayList<String>();
+        List<RecipeLine> myIngr = new ArrayList<RecipeLine>();
+        List<RecipeLine> myInst = new ArrayList<RecipeLine>();
+
+        for (String myStr : aMeta.split("\n"))
+            if (myStr.trim().length() > 0)
+                myMeta.add(myStr.trim());
+
+        for (String myStr : aIngr.split("\n"))
+            if (myStr.trim().length() > 0)
+                myIngr.add(new RecipeLine(myStr.trim()));
+
+        for (String myStr : aInst.split("\n"))
+            if (myStr.trim().length() > 0)
+                myInst.add(new RecipeLine(myStr.trim()));
+
+        return new Recipe(aName.trim(), myMeta, myIngr, myInst);
+    }
 }
